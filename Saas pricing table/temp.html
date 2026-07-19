@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Pricing Table</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+        }
+
+        .pricing-container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .header-section {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover:not(.pricing-card-highlighted) {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card-highlighted {
+            border: 2px solid #4f46e5;
+            transform: scale(1.05); /* Scales the middle card up */
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.15);
+            position: relative; /* Needed for the absolute badge */
+            z-index: 10;
+        }
+
+        .pricing-card-highlighted:hover {
+             transform: scale(1.08); /* slight extra pop on hover */
+             box-shadow: 0 25px 30px -5px rgba(79, 70, 229, 0.25);
+        }
+
+        .highlighted-badge {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centers perfectly on top edge */
+            background-color: #4f46e5;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .plan-subtitle {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .plan-price-container {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0f172a;
+        }
+        
+        .plan-duration {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .plan-features {
+            list-style-type: none;
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .tick-mark {
+            width: 20px;
+            height: 20px;
+            /* Using a data URI for the green checkmark SVG */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        
+        /* Different tick color for highlighted card */
+        .pricing-card-highlighted .tick-mark {
+             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%234f46e5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'%3E%3C/path%3E%3C/svg%3E");
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            margin-top: auto; /* Pushes button to bottom if content varies */
+        }
+
+        .btn-basic {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .btn-basic:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-highlighted {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        .btn-highlighted:hover {
+            background-color: #4338ca;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-table {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .pricing-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .pricing-card-highlighted {
+                /* Remove scale on mobile so it stacks nicely */
+                transform: scale(1); 
+            }
+            
+            .pricing-card-highlighted:hover {
+                 transform: scale(1.02); /* slight extra pop on hover */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <div class="header-section">
+            <h1 class="title">Simple, transparent pricing</h1>
+            <p class="subtitle">No hidden fees. Cancel anytime.</p>
+        </div>
+        
+        <div class="pricing-table">
+            
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">Basic</div>
+                <div class="plan-subtitle">Perfect for starters</div>
+                <div class="plan-price-container">
+                    <span class="plan-price">$9</span>
+                    <span class="plan-duration">/mo</span>
+                </div>
+                <ul class="plan-features">
+                        <li class="feature-line"><div class="tick-mark"></div> <span>1 User</span></li>
+                        <li class="feature-line"><div class="tick-mark"></div> <span>5GB Storage</span></li>
+                        <li class="feature-line"><div class="tick-mark"></div> <span>Basic Support</span></li>
+                </ul>
+                <button class="btn btn-basic">Get Started</button>
+            </div>
+            
+            <!-- Pro Plan (Highlighted) -->
+            <div class="pricing-card pricing-card-highlighted">
+                <div class="highlighted-badge">Most Popular</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-subtitle">Best for professionals</div>
+                <div class="plan-price-container">
+                    <span class="plan-price">$29</span>
+                    <span class="plan-duration">/mo</span>
+                </div>
+                
+                <ul class="plan-features">
+                        <li class="feature-line"><div class="tick-mark"></div> <span>5 Users</span></li>
+                        <li class="feature-line"><div class="tick-mark"></div> <span>50GB Storage</span></li>
+                        <li class="feature-line"><div class="tick-mark"></div> <span>Priority Support</span></li>
+                        <li class="feature-line"><div class="tick-mark"></div> <span>Advanced Analytics</span></li>
+                </ul>
+                <button class="btn btn-highlighted">Get Started</button>
+            </div>
+            
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-subtitle">For large teams</div>
+                <div class="plan-price-container">
+                    <span class="plan-price">$99</span>
+                    <span class="plan-duration">/mo</span>
+                </div>
+                <ul class="plan-features">
+                    <li class="feature-line"><div class="tick-mark"></div> <span>Unlimited Users</span></li>
+                    <li class="feature-line"><div class="tick-mark"></div> <span>500GB Storage</span></li>
+                    <li class="feature-line"><div class="tick-mark"></div> <span>24/7 Support</span></li>
+                    <li class="feature-line"><div class="tick-mark"></div> <span>Custom Domain</span></li>
+                </ul>
+                <button class="btn btn-basic">Get Started</button>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

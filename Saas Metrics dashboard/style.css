@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1.5fr 8.5fr;
+    column-gap: 20px;
+    padding: 15px;
+    background-color: #F8FAFC;
+}
+
+.sidebar {
+    background-color: #0F172A;
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 230px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-link {
+    text-decoration: none;
+    color: #98A6BA;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 15px;
+    font-weight: 500;
+
+}
+
+.sidebar-link:hover:not(.active-link) {
+    background-color: #ffffff19;
+    border-radius: 8px;
+    color: white;
+}
+
+.link-icon {
+    margin-right: 15px;
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.logo,
+.logo-highlight {
+    text-align: left;
+    padding: 20px 0px;
+    font-size: 24px;
+    font-weight: bolder;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 20px;
+}
+
+.logo {
+    margin-left: 10px;
+}
+
+.logo-highlight {
+    color: #6366F1;
+}
+
+.active-link {
+    background-color: #4F46E5;
+    border-radius: 8px;
+    color: white;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    height: 98vh;
+    width: 100%;
+    border-radius: 14px;
+    gap: 20px;
+}
+
+.header {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0px 5px 10px #F0F2F4;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+}
+
+.profile-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.profile-name {
+    margin-right: 30px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: sans-serif;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.header-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: 40px;
+    display: block;
+    font-family: sans-serif;
+}
+
+.header-nav-toggle {
+    display: none;
+}
+
+.revenue-tile {
+    grid-column: 1 / span 3;
+    grid-row: 2 / span 4;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    box-shadow: 0px 5px 10px #F0F2F4;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.active-user-tile {
+    grid-column: 4;
+    grid-row: 2 / 4;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    box-shadow: 0px 5px 10px #F0F2F4;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.churn-rate-tile {
+    grid-column: 4;
+    grid-row: 4 / 6;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    box-shadow: 0px 5px 10px #F0F2F4;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.revenue-chart-tile {
+    grid-column: 1 / span 4;
+    grid-row: 6 / 11;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    box-shadow: 0px 5px 10px #F0F2F4;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.tile-title {
+    font-size: x-large;
+    font-weight: 500;
+    color: #64748B;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+
+.tile-value {
+    font-size: xx-large;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #07172A;
+    font-family: sans-serif;
+}
+
+.tile-change {
+    font-size: 0.9rem;
+    color: #059669;
+    font-family: sans-serif;
+}
+
+.tile-change-importance {
+    background-color: #d1fae5bd;
+    display: inline;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.chart-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: flex-end;
+    gap: 40px;
+    border-width: 0px 0px 1px 1px;
+    border-color: #E2E8F0;
+    border-style: solid;
+    padding: 10px;
+}
+
+.chart-bar {
+    width: 100%;
+    background-color: #6366F1;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.chart-bar:hover {
+    background-color: #534bf5c7;
+}
+
+.chart-labels {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.chart-labels>div {
+    font-family: sans-serif;
+    color: #64748B;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .profile-name {
+        display: none;
+    }
+
+    .profile-picture {
+    width: 40px;
+    height: 40px;
+}
+
+    .header-nav-toggle {
+        display: block;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(10, 1fr);
+    }
+
+    .header {
+        grid-column: 1 / span 2;
+    }
+
+    .header-title {
+         font-size: 1.3rem;
+    font-weight: 600;
+    margin-left: 20px;
+    }
+
+    .revenue-tile {
+        grid-column: 1 /span 2;
+        grid-row: 2 / span 2;
+        padding: 30px;
+    }
+
+    .tile-title {
+        font-size: medium;
+        margin-bottom: 10px;
+    }
+
+    .tile-value {
+        font-size: x-large;
+    }
+
+    .tile-change {
+        font-size: 0.8rem;
+        color: #059669;
+        font-family: sans-serif;
+    }
+
+    .tile-change-importance {
+        font-size: 0.8rem;
+    }
+
+    .active-user-tile {
+        grid-column: 1;
+        grid-row: 4 / span 2;
+    }
+
+    .churn-rate-tile {
+        grid-column: 2;
+        grid-row: 4 / span 2;
+    }
+
+    .revenue-chart-tile {
+        grid-column: 1 /span 2;
+    }
+
+    .chart-container,
+    .chart-labels {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+}

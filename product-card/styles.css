@@ -1,0 +1,145 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D3A375;
+    min-height: 100vh;
+}
+
+.card
+{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: 500px;
+    background-color: #E9EDCA;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-image
+{
+    width: 100%;
+    height: 40%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    object-fit: contain;
+
+}
+
+.product-details-container
+{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #FFF9E1;
+    height: 60%;
+    width: 100%;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.product-prices
+{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.product-price
+{
+    color: #D3A375;
+    font-size: 1.25em;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.actual-price
+{
+    color: rgba(128, 128, 128, 0.217);
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-decoration: line-through;    
+}
+
+.product-title-rating
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-rating
+{
+    color: #D3A375;
+    font-size: 1em;
+}
+
+.product-title
+{
+    color: #D3A375;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.product-description
+{
+    color: rgba(122, 104, 104, 0.744);
+    font-size: 0.85em;
+}
+
+.product-size-label
+{
+    color: rgba(122, 104, 104, 0.744);
+}
+
+.product-sizes
+{
+    display: flex;
+    gap: 6px;
+}
+
+.size
+{
+    padding: 2.5px 5px;
+    border: 1px solid rgba(122, 104, 104, 0.344);
+    border-radius: 5px;
+    color: #D3A375;
+}
+.product-stock-container
+{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.product-stock-indicator
+{
+    width: 10px;
+    height: 10px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+}
+.product-stock
+{
+    color: #4CAF50;
+    font-size: 0.85em;
+}
+
+.add-to-cart-button
+{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #D3A375;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+}

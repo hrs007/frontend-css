@@ -1,0 +1,88 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.container
+{
+    width: 100%;
+    height: 50%;
+    background-color: #DDE3E3;
+	position: absolute;
+	top: 25%;
+	display: flex;
+	align-items: center;
+}
+
+.content
+{
+	position: relative;
+	border: 9px solid white;
+	margin: auto;
+	border-radius: 40px;
+	width: 45%;
+	height: 70%;
+	box-shadow:
+        0 20px 40px rgba(0,0,0,.12);
+}
+
+.women-image
+{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 30px;
+}
+
+.verified-icon
+{
+	width: 35px;
+	height: 35px;
+	display: inline-block;
+	align-items: flex-end;
+}
+
+.description
+{
+	position: absolute;
+	bottom: 0%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	padding: 0px 20px 20px 20px;
+	background-image: linear-gradient( to bottom, #c9cbc800 ,#c9cbc8ba, #C9CBC8, #E9EAEC, #EAECEB);
+	border-radius: 0px 0px 30px 30px;
+    min-height: 35%;
+	justify-content: space-evenly;
+}
+
+.follow-button
+{
+	background-color: #EFEFEF;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.stats
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.contact-icon, .collection-icon
+{
+	max-width: 20px;
+	max-height: 20px;
+}
+.contact-txt, .collection-txt
+{
+	max-width: 20px;
+	max-height: 20px;
+		
+}

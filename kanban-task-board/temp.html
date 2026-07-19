@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Task Board</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles for Scrollbars (Important for Kanban boards!) -->
+    <style>
+        /* Main horizontal scrollbar */
+        .board-scroll::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .board-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 0 16px;
+        }
+
+        .board-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .board-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Vertical scrollbar for individual task lists */
+        .task-list-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .task-list-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .task-list-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            /* slate-300 */
+            border-radius: 8px;
+        }
+
+        .task-list-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+            /* slate-400 */
+        }
+    </style>
+</head>
+
+<!-- min-h-screen to fill viewport, flex-col to stack header and board -->
+
+<body class="bg-blue-600 min-h-screen flex flex-col font-sans h-screen overflow-hidden">
+
+    <!-- Kanban Header (Fixed at top) -->
+    <div class="p-4 bg-blue-700/40 flex items-center justify-between shrink-0 shadow-sm border-b border-white/10">
+        <h1 class="text-white font-bold text-xl tracking-tight">Project Roadmap</h1>
+        <div class="flex -space-x-2">
+            <div class="w-9 h-9 rounded-full bg-blue-300 border-2 border-blue-600 shadow-sm"></div>
+            <div class="w-9 h-9 rounded-full bg-indigo-300 border-2 border-blue-600 shadow-sm"></div>
+            <div class="w-9 h-9 rounded-full bg-purple-300 border-2 border-blue-600 shadow-sm"></div>
+        </div>
+    </div>
+
+    <!-- Main Board Area (Horizontally Scrollable) -->
+    <!-- flex-1 allows it to take remaining height, overflow-x-auto enables side scrolling -->
+    <div class="flex-1 p-4 md:p-6 flex gap-4 md:gap-6 overflow-x-auto items-start snap-x snap-mandatory board-scroll">
+
+        <!-- Column 1: To Do -->
+        <!-- shrink-0 is crucial so the column doesn't squish. max-h-full keeps it from overflowing the screen vertically -->
+        <div class="bg-slate-100 rounded-xl w-72 sm:w-80 shrink-0 flex flex-col max-h-full snap-center shadow-lg">
+
+            <!-- Column Header (Fixed within column) -->
+            <div
+                class="p-3 shrink-0 flex justify-between items-center cursor-grab active:cursor-grabbing border-b border-transparent pb-2">
+                <h3 class="font-bold text-slate-800 text-sm">To Do</h3>
+                <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">3</span>
+            </div>
+
+            <!-- Task List (Vertically Scrollable) -->
+            <!-- flex-1 and overflow-y-auto is the magic combo here -->
+            <div class="px-2 pb-2 flex-1 overflow-y-auto flex flex-col gap-2 task-list-scroll min-h-[150px]">
+
+                <!-- Task Card 1 -->
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Design landing page wireframes</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-red-400/80"></div>
+                            <div class="w-8 h-2 rounded-full bg-blue-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=1" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- Task Card 2 -->
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Research competitor pricing</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-emerald-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=2" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- Task Card 3 -->
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Update brand guidelines</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-amber-400/80"></div>
+                            <div class="w-8 h-2 rounded-full bg-purple-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=3" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column Footer (Fixed at bottom of column) -->
+            <div class="p-2 shrink-0 border-t border-transparent pt-1">
+                <button
+                    class="flex items-center gap-2 text-slate-500 text-sm font-medium hover:text-slate-800 hover:bg-slate-200 w-full p-2 rounded-lg transition-colors text-left">
+                    <span class="text-lg leading-none">+</span> Add a card
+                </button>
+            </div>
+        </div>
+
+        <!-- Column 2: In Progress -->
+        <div class="bg-slate-100 rounded-xl w-72 sm:w-80 shrink-0 flex flex-col max-h-full snap-center shadow-lg">
+            <div
+                class="p-3 shrink-0 flex justify-between items-center cursor-grab active:cursor-grabbing border-b border-transparent pb-2">
+                <h3 class="font-bold text-slate-800 text-sm">In Progress</h3>
+                <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">4</span>
+            </div>
+
+            <div class="px-2 pb-2 flex-1 overflow-y-auto flex flex-col gap-2 task-list-scroll min-h-[150px]">
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Build Kanban CSS layout</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-blue-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=4" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Fix mobile navigation bug</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-red-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=5" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Write API documentation</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-emerald-400/80"></div>
+                            <div class="w-8 h-2 rounded-full bg-blue-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=6" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Client meeting preparation</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-amber-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=7" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-2 shrink-0 border-t border-transparent pt-1">
+                <button
+                    class="flex items-center gap-2 text-slate-500 text-sm font-medium hover:text-slate-800 hover:bg-slate-200 w-full p-2 rounded-lg transition-colors text-left">
+                    <span class="text-lg leading-none">+</span> Add a card
+                </button>
+            </div>
+        </div>
+
+        <!-- Column 3: Review -->
+        <div class="bg-slate-100 rounded-xl w-72 sm:w-80 shrink-0 flex flex-col max-h-full snap-center shadow-lg">
+            <div
+                class="p-3 shrink-0 flex justify-between items-center cursor-grab active:cursor-grabbing border-b border-transparent pb-2">
+                <h3 class="font-bold text-slate-800 text-sm">Review</h3>
+                <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">2</span>
+            </div>
+
+            <div class="px-2 pb-2 flex-1 overflow-y-auto flex flex-col gap-2 task-list-scroll min-h-[150px]">
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">Accessibility audit</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-purple-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=8" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 group transition-colors">
+                    <p class="text-sm text-slate-700 mb-3 leading-snug">QA testing on Safari</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex gap-1.5">
+                            <div class="w-8 h-2 rounded-full bg-red-400/80"></div>
+                            <div class="w-8 h-2 rounded-full bg-amber-400/80"></div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=9" alt="assignee"
+                            class="w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-2 shrink-0 border-t border-transparent pt-1">
+                <button
+                    class="flex items-center gap-2 text-slate-500 text-sm font-medium hover:text-slate-800 hover:bg-slate-200 w-full p-2 rounded-lg transition-colors text-left">
+                    <span class="text-lg leading-none">+</span> Add a card
+                </button>
+            </div>
+        </div>
+
+        <!-- Column 4: Done (Simulating a long list to show vertical scroll) -->
+        <div class="bg-slate-100 rounded-xl w-72 sm:w-80 shrink-0 flex flex-col max-h-full snap-center shadow-lg">
+            <div
+                class="p-3 shrink-0 flex justify-between items-center cursor-grab active:cursor-grabbing border-b border-transparent pb-2">
+                <h3 class="font-bold text-slate-800 text-sm">Done</h3>
+                <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">5</span>
+            </div>
+
+            <div class="px-2 pb-2 flex-1 overflow-y-auto flex flex-col gap-2 task-list-scroll min-h-[150px]">
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Setup project repository</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Initial database schema</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Deploy staging environment</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Create logo assets</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Configure CI/CD pipeline</p>
+                </div>
+
+                <!-- Extra tasks to force scrolling -->
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Write tests for auth</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 opacity-60">
+                    <p class="text-sm text-slate-700 mb-3 line-through">Finalize color palette</p>
+                </div>
+            </div>
+
+            <div class="p-2 shrink-0 border-t border-transparent pt-1">
+                <button
+                    class="flex items-center gap-2 text-slate-500 text-sm font-medium hover:text-slate-800 hover:bg-slate-200 w-full p-2 rounded-lg transition-colors text-left">
+                    <span class="text-lg leading-none">+</span> Add a card
+                </button>
+            </div>
+        </div>
+
+        <!-- Add another list button -->
+        <div
+            class="bg-blue-500/20 hover:bg-blue-500/30 transition-colors rounded-xl w-72 sm:w-80 shrink-0 p-3 snap-center cursor-pointer flex items-center gap-2">
+            <span class="text-white text-lg leading-none">+</span>
+            <span class="text-white font-medium text-sm">Add another list</span>
+        </div>
+
+    </div>
+</body>
+
+</html>

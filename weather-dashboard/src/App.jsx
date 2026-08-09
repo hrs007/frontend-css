@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Sun, Cloud, CloudRain, Wind, Droplets, Thermometer, MapPin, Loader2 } from 'lucide-react';
 
-// Simulating an API call to a weather service
 const fetchMockWeather = (city) => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -18,7 +17,7 @@ const fetchMockWeather = (city) => {
           { day: 'Thu', temp: 26, type: 'Sunny' },
         ]
       });
-    }, 1500); // 1.5s delay to show loading state
+    }, 1500);
   });
 };
 
@@ -27,7 +26,6 @@ export default function WeatherDashboard() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Load weather on initial render and on search
   const loadWeather = async (cityToFetch) => {
     setLoading(true);
     const data = await fetchMockWeather(cityToFetch);
@@ -54,7 +52,7 @@ export default function WeatherDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center p-4 md:p-8 font-sans text-white">
+    <div className="min-h-screen bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center p-4 md:p-8 font-sans text-white">
       
       {/* Glass Container */}
       <div className="w-full max-w-4xl bg-white/20 backdrop-blur-xl rounded-3xl border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] overflow-hidden flex flex-col md:flex-row">
